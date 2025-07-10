@@ -1,11 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
+
 interface GlobalEventsState {
   currKeyPress: string;
   wrongKey: string | null;
   currentInd: number;
   correctKeyPress: number;
   incorrectKeyPress: number;
+  correctKeys: string[];      // ✅ NEW
+  incorrectKeys: string[];    // ✅ NEW
 }
 
 const initialState: GlobalEventsState = {
@@ -14,6 +17,8 @@ const initialState: GlobalEventsState = {
   currentInd: 0,
   correctKeyPress: 0,
   incorrectKeyPress: 0,
+  correctKeys: [],
+  incorrectKeys: [],
 };
 
 const globalEventsSlice = createSlice({
@@ -22,7 +27,12 @@ const globalEventsSlice = createSlice({
   reducers: {
     clearEvents(state) {
       state.currKeyPress = "";
+      state.wrongKey = null;
       state.currentInd = 0;
+      state.correctKeyPress = 0;
+      state.incorrectKeyPress = 0;
+      state.correctKeys = [];  
+      state.incorrectKeys = [];
     },
     setcurrKeyPress(state, action: PayloadAction<string>) {
       state.currKeyPress = action.payload;
@@ -39,6 +49,13 @@ const globalEventsSlice = createSlice({
     setWrongKey(state, action: PayloadAction<string | null>) {
       state.wrongKey = action.payload;
     },
+    addCorrectKey(state, action: PayloadAction<string>) {
+      state.correctKeys.push(action.payload);
+    },
+    addIncorrectKey(state, action: PayloadAction<string>) {
+      state.incorrectKeys.push(action.payload);
+    },
+
   },
 });
 
@@ -49,5 +66,8 @@ export const {
   setcorrectKeyPress,
   setincorrectKeyPress,
   setWrongKey,
+  addCorrectKey,      // ✅ export
+  addIncorrectKey,    // ✅ export
 } = globalEventsSlice.actions;
+
 export default globalEventsSlice.reducer;

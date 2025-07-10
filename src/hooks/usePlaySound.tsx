@@ -12,7 +12,7 @@ export default function usePlaySound({sourceSound}: soundType) {
   if (!soundRef.current) {
     soundRef.current = new Howl({
       src: [ sourceSound === "correct"  ?  KeyPress: Error],
-      volume: 1.0,
+      volume: 0.1,
       html5: false,
     });
   }

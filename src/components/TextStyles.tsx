@@ -3,7 +3,7 @@ import type React from "react";
 
 type RegularTextProps = {
     children: React.ReactNode,
-    style: CSSProperties
+    style?: CSSProperties
 }
 
 
