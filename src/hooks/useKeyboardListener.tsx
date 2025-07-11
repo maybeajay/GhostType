@@ -25,7 +25,7 @@ export default function useKeyboardListener(text: string) {
   let userTime = retriveFromSession('userTime');
 
   // timer * 60 
-  const { startTimer } = useTimer(Number(userTime*60));
+  const { startTimer } = useTimer(Number(userTime * 60));
   const currentInd = useSelector((state: any) => state.globalEvents.currentInd);
   const correctSound = usePlaySound({ sourceSound: "correct" });
   const incorrectSound = usePlaySound({ sourceSound: "incorrect" });

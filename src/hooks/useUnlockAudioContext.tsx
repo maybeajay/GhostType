@@ -9,7 +9,6 @@ export default function useUnlockAudioContext() {
     const unlock = () => {
       if (Howler.ctx?.state === "suspended") {
         Howler.ctx.resume().then(() => {
-          console.log("🔓 AudioContext resumed");
         });
       }
 

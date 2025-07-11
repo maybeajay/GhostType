@@ -10,25 +10,31 @@ const Results = () => {
   const dispatch = useDispatch();
   const [userStats, setUserStats] = useState<any>(null);
   const { calculateTypingStats } = useCalculateScore();
-  const { retriveFromSession } = useSessionStorage();
+  const { retriveFromSession, removeItem } = useSessionStorage();
   const navigate = useNavigate();
 
   const userTime = retriveFromSession("userTime");
 
+  const parsedTime = userTime !== null ?  parseInt(userTime) : 0;
+
   useEffect(() => {
-    const timeInSeconds = Number(userTime);
+    if(!parsedTime){
+      navigate('/', {replace: true})
+    }
 
     const stats = calculateTypingStats({
       correctCharCount: correctKeys.length,
       totalTypedChars: correctKeys.length + incorrectKeys.length,
       uncorrectedErrors: incorrectKeys.length,
-      timeInSeconds,
+      timeInSeconds: parsedTime
     });
 
     setUserStats(stats);
 
     const timer = setTimeout(() => {
       dispatch(clearEvents());
+      removeItem("userTime");
+      
     }, 100);
 
     return () => clearTimeout(timer);

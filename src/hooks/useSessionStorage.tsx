@@ -7,8 +7,15 @@ export default function useSessionStorage(){
     function retriveFromSession(label: string){
         let sessionData = sessionStorage.getItem(label);
         return sessionData;
-
     }
 
-    return {saveToSession, retriveFromSession}
+    function clearStorage(){
+        sessionStorage.clear();
+    }
+
+    function removeItem(label: string){
+        sessionStorage.removeItem(label)
+    }
+
+    return {saveToSession, retriveFromSession, clearStorage, removeItem}
 }
