@@ -1,11 +1,11 @@
 
 import './App.css'
-import MainComp from './components/MainComp';
 import useUnlockAudioContext from './hooks/useUnlockAudioContext';
+// app tsx for global functions like audio contet hook etc
 function App() {
   useUnlockAudioContext();
   return(
-    <MainComp />
+    <></>  
   )
 
 }

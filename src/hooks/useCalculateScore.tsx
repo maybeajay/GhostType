@@ -10,11 +10,11 @@ export default function useCalculateScore() {
     uncorrectedErrors: number;
     timeInSeconds: number;
   }) {
-    const timeInMinutes = timeInSeconds / 10;
+    const timeInMinutes = timeInSeconds*60 / 60;
 
-    const wpm = correctCharCount / 5 / timeInMinutes;
+    const wpm = (correctCharCount / 5) / timeInMinutes;
     const accuracy = (correctCharCount / totalTypedChars) * 100;
-    const netWpm = wpm - uncorrectedErrors / timeInMinutes;
+    const netWpm = wpm - (uncorrectedErrors / timeInMinutes);
 
     return {
       wpm: Math.floor(Math.max(0, wpm)),
@@ -22,5 +22,6 @@ export default function useCalculateScore() {
       accuracy: Math.max(0, accuracy),
     };
   }
-  return {calculateTypingStats}
+
+  return { calculateTypingStats };
 }
