@@ -9,6 +9,7 @@ interface GlobalEventsState {
   incorrectKeyPress: number;
   correctKeys: string[];      // ✅ NEW
   incorrectKeys: string[];    // ✅ NEW
+  wrongIndexes: number[],
 }
 
 const initialState: GlobalEventsState = {
@@ -19,6 +20,8 @@ const initialState: GlobalEventsState = {
   incorrectKeyPress: 0,
   correctKeys: [],
   incorrectKeys: [],
+  wrongIndexes: [] ,
+
 };
 
 const globalEventsSlice = createSlice({
@@ -33,6 +36,7 @@ const globalEventsSlice = createSlice({
       state.incorrectKeyPress = 0;
       state.correctKeys = [];  
       state.incorrectKeys = [];
+      state.wrongIndexes= [];
     },
     setcurrKeyPress(state, action: PayloadAction<string>) {
       state.currKeyPress = action.payload;
@@ -55,6 +59,9 @@ const globalEventsSlice = createSlice({
     addIncorrectKey(state, action: PayloadAction<string>) {
       state.incorrectKeys.push(action.payload);
     },
+  addWrongIndex: (state, action: PayloadAction<number>) => {
+  state.wrongIndexes.push(action.payload);
+}
 
   },
 });
@@ -67,7 +74,8 @@ export const {
   setincorrectKeyPress,
   setWrongKey,
   addCorrectKey,      // ✅ export
-  addIncorrectKey,    // ✅ export
+  addIncorrectKey, 
+  addWrongIndex   // ✅ export
 } = globalEventsSlice.actions;
 
 export default globalEventsSlice.reducer;
