@@ -49,10 +49,11 @@ const RandomText = ({ text, style, isVisible }: Props) => {
             <Char
               char={char}
               isActive={index === currentInd}
-              showWrongKey={wrongIndexes.includes(index)}
+              showWrongKey={index === currentInd && wrongKey !== null}
               wrongKey={wrongKey}
               isTyped={index < currentInd}
               currentInd={currentInd}
+              wasWronglyTyped={wrongIndexes.includes(index)} 
             />
           </animated.span>
         ))}
@@ -68,6 +69,7 @@ type CharProps = {
   wrongKey: string | null;
   isTyped: boolean;
   currentInd: number;
+  wasWronglyTyped: boolean
 };
 
 const Char = memo(
@@ -77,6 +79,7 @@ const Char = memo(
     showWrongKey,
     wrongKey,
     isTyped,
+    wasWronglyTyped, // ✅ Accept the prop
   }: CharProps) => {
     const displayChar = char === " " ? "\u00A0" : char;
 
@@ -86,14 +89,18 @@ const Char = memo(
       leave: { opacity: 0, transform: "translateY(20px)" },
       config: { tension: 150, friction: 20 },
     });
+
     return (
       <span
         style={{
-          backgroundColor: showWrongKey && displayChar !== "\u00A0"
-            ? "#E85D75"
-            : isTyped
-            ? "#C4CBCA"
-            : undefined,
+        backgroundColor:
+      showWrongKey && displayChar !== "\u00A0"
+    ? "#E85D75"
+    : wasWronglyTyped
+    ? "#F9B5AC"
+    : isTyped
+    ? "#C4CBCA"
+    : undefined,
           color: isActive ? "#419D78" : "black",
           fontSize: "2.25rem",
           padding: "0.25rem",
@@ -103,7 +110,6 @@ const Char = memo(
           transition: "background-color 0.2s ease",
         }}
       >
-      
         {displayChar}
         {transitions((style, item) =>
           item ? (
@@ -126,5 +132,6 @@ const Char = memo(
     );
   }
 );
+
 
 export default RandomText;

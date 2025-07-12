@@ -79,7 +79,7 @@ export default function useKeyboardListener(text: string) {
     }
 
     // normalize typedChar
-    if (/^[a-z]$/i.test(key)) {
+    if (/^[a-z, 0-9, $&+,:;=?@#|'<>.^*()%!-]$/i.test(key)) {
       typedChar = isShift ? key.toUpperCase() : key.toLowerCase();
     } else if (isSpaceBar) {
       typedChar = " ";

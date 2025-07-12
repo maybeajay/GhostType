@@ -41,7 +41,7 @@ const Results = () => {
   }, []);
 
   function handleRetakeTest() {
-    navigate("/typing-test");
+    navigate("/");
   }
 
   function handleGoHome() {
