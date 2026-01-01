@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route } from "react-router";
-import App from "./App";
 import Home from "./screens/Results"
 import WelcomeScreen from "./screens/Welcome";
 import TypingTest from "./screens/TypingTest";

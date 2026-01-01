@@ -34,7 +34,7 @@ const RandomText = ({ text, style, isVisible }: Props) => {
   const visibleCharArray = fullCharArray.slice(0, visibleCharCount);
 
   const transitions = useTransition(visibleCharArray, {
-    keys: (_, i) => i,
+    keys: (i:any) => i, 
     from: { opacity: 0, transform: "translateY(10px)" },
     enter: { opacity: 1, transform: "translateY(0px)" },
     config: { tension: 170, friction: 18 },
@@ -79,7 +79,7 @@ const Char = memo(
     showWrongKey,
     wrongKey,
     isTyped,
-    wasWronglyTyped, // ✅ Accept the prop
+    wasWronglyTyped,
   }: CharProps) => {
     const displayChar = char === " " ? "\u00A0" : char;
 
