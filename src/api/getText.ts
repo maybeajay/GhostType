@@ -9,7 +9,7 @@ export const generateRandomText = async (paragraph: number) => {
             'X-Api-Key': API_KEY
         };
         const response = await axios.get(`${API_URL}?paragraphs=${paragraph}`, { headers });
-        return response;
+        return response.data;
     } catch (error) {
         console.log("error", error);
         throw error;
