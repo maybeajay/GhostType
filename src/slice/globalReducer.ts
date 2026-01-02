@@ -7,8 +7,8 @@ interface GlobalEventsState {
   currentInd: number;
   correctKeyPress: number;
   incorrectKeyPress: number;
-  correctKeys: string[];      // ✅ NEW
-  incorrectKeys: string[];    // ✅ NEW
+  correctKeys: string[]; 
+  incorrectKeys: string[];
   wrongIndexes: number[],
 }
 
@@ -73,9 +73,9 @@ export const {
   setcorrectKeyPress,
   setincorrectKeyPress,
   setWrongKey,
-  addCorrectKey,      // ✅ export
+  addCorrectKey,      
   addIncorrectKey, 
-  addWrongIndex   // ✅ export
+  addWrongIndex  
 } = globalEventsSlice.actions;
 
 export default globalEventsSlice.reducer;

@@ -6,6 +6,7 @@ type ModalProps = {
 
 export default function Modal({ onComplete }: ModalProps) {
   const [timer, setTimer] = useState(3);
+
   useEffect(() => {
     const timer = setTimeout(() => {
       onComplete();
